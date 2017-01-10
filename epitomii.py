@@ -4,7 +4,7 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash, make_response
 
 
-DAILY_JAM = "https://www.youtube.com/embed/W9qb3jxkh8w?rel=0&amp;controls=0&amp;showinfo=0;autoplay=1&loop=1"
+DAILY_JAM = "https://www.youtube.com/embed/W9qb3jxkh8w?rel=0&amp;controls=0&amp;showinfo=0;autoplay=1&loop=1&playlist=W9qb3jxkh8w"
 app = Flask(__name__)
 # app.config.from_object(__name__)
 
@@ -149,4 +149,5 @@ def index():
 
 
 if __name__ == "__main__":
+    app.config["CACHE_TYPE"] = "null"
     app.run()
