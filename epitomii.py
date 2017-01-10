@@ -149,5 +149,4 @@ def index():
 
 
 if __name__ == "__main__":
-    app.config["CACHE_TYPE"] = "null"
     app.run()
