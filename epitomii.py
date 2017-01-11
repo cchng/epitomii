@@ -4,7 +4,7 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash, make_response
 
 
-YOUTUBE_CODE = "lA-gGl6qihQ"
+YOUTUBE_CODE = "Q3utvDLTynY"
 DAILY_JAM = "https://www.youtube.com/embed/{code}?rel=0&amp;controls=0&amp;showinfo=0;autoplay=1&loop=1&playlist={code}".format(code=YOUTUBE_CODE)
 
 app = Flask(__name__)
