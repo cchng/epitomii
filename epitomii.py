@@ -23,7 +23,7 @@ app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 @app.route('/')
 def index():
   #  username = request.cookies.get('username')
-    return render_template('index.html', jam=DAILY_JAMw)
+    return render_template('index.html', jam=DAILY_JAM)
 
 @app.route('/music')
 def music():
