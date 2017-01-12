@@ -4,7 +4,7 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash, make_response
 
 
-YOUTUBE_CODE = "Q3utvDLTynY"
+YOUTUBE_CODE = "bo9YNgdMpkQ"
 DAILY_JAM = "https://www.youtube.com/embed/{code}?rel=0&amp;controls=0&amp;showinfo=0;autoplay=1&loop=1&playlist={code}".format(code=YOUTUBE_CODE)
 
 app = Flask(__name__)
@@ -23,7 +23,7 @@ app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 @app.route('/')
 def index():
   #  username = request.cookies.get('username')
-    return render_template('index.html', jam=DAILY_JAM)
+    return render_template('index.html', jam=DAILY_JAMw)
 
 @app.route('/music')
 def music():
