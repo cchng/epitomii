@@ -5,7 +5,8 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
 
 
 YOUTUBE_CODE = "bo9YNgdMpkQ"
-DAILY_JAM = "https://www.youtube.com/embed/{code}?rel=0&amp;controls=0&amp;showinfo=0;autoplay=1&loop=1&playlist={code}".format(code=YOUTUBE_CODE)
+#DAILY_JAM = "https://www.youtube.com/embed/{code}?rel=0&amp;controls=0&amp;showinfo=0;autoplay=1&loop=1&playlist={code}".format(code=YOUTUBE_CODE)
+DAILY_JAM = "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/264414483&amp;auto_play=true&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -114,11 +115,14 @@ def music():
 @app.cli.command('add')
 def add_entry():
     db = get_db()
-
-    db.execute('insert into entries (url) values (?)',
-                 [DAILY_JAM.split("?")[0]])
+    if "soundcloud" in DAILY_JAM:
+        entry = DAILY_JAM.replace("auto_play=true", "auto_play=false")
+    else:
+        entry = DAILY_JAM.split("?")[0]
+        
+    db.execute('insert into entries (url) values (?)', [entry])
     db.commit()
-    print('New entry was successfully posted')
+    print('{} was successfully posted'.format(entry))
   
 # #     flash('New entry was successfully posted')
 # #     return redirect(url_for('show_entries'))

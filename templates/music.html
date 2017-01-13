@@ -1,67 +1,44 @@
 {% extends "layout.html" %}
 {% block nav %}
+    <nav id="topNav" class="navbar navbar-default navbar-fixed-top" data-spy="affix">
+        <div class="container-fluid">
+	    <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar">
+		    <span class="sr-only">Toggle navigation</span>
+		    <span class="icon-bar"></span>
+		    <span class="icon-bar"></span>
+		    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="{{ url_for('index') }}"><i class="ion-ios-pulse"></i>epitomii </a>
+	    </div>
 
-            <div class="navbar-collapse collapse" id="bs-navbar">
-              <ul class="nav navbar-nav">
-		<li>
-                        <a class="page-scroll" href="#three">Gallery</a>
-                    </li>
 
-                    <li>
-                        <a class="page-scroll" href="#four">What's new</a>
-                    </li>
-
-                    <li>
-                        <a class="page-scroll" href="#two">Archives</a>
-                    </li>
-{#                    <li>
-                        <a class="page-scroll" href="#last">Contact</a>
-                    </li> #}
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme" href="#aboutModal">About</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
+	    <div class="navbar-collapse collapse" id="bs-navbar">
+			<ul class="nav navbar-nav navbar-right">
+		    <li>
+			<a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme" href="{{ url_for("index") }}">Home</a>
+		    </li>
+		</ul>
+	    </div>
+    	</div>
+    </nav>    
 
 {% endblock nav %}
-    {% block body %}
+{% block body %}
     <section id="archive">
-       <div class="container">
-         <div class="row">
+	<div class="container">
+            <div class="row">
 
-{% for jam in jams %}
-<div class="col-lg-3 col-md-4 col-xs-6 thumb">
-  <div class="embed-responsive embed-responsive-16by9">
+		{% for jam in jams %}
+		    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+			<div class="embed-responsive embed-responsive-16by9">
+  			    <iframe class="embed-responsive-item" src={{ jam.url }}></iframe>
+			</div><br>
+		    </div>
+		{% endfor %}
 
-  		  <iframe class="embed-responsive-item" src={{ jam.url
-  			  }}></iframe>
-		  </div><br>
-      </div>
-{% endfor %}
-{#            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-	    #}
 	    </div>
-	    </div>
+	</div>
 
-</section>
+    </section>
 {% endblock body %}
-
-    
