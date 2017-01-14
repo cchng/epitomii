@@ -23,8 +23,8 @@ body {
 
 hr {
     max-width: 80px;
-    border-width: 3px;
-    opacity: 0.09;
+    border-width: 2px;
+    opacity: 0.8;
     margin-top: 15px;
     margin-bottom: 15px;
 }
@@ -34,7 +34,7 @@ hr.light {
 }
 
 a {
-    color: #d3d3d3; /*#9c27b0;*/
+    color: #cccccc; /*#9c27b0;*/
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
     transition: all .35s;
@@ -92,6 +92,10 @@ p {
     color: #111; /*#9c27b0;*/
 }
 
+.text-muted {
+    color: #333333;
+}
+
 .modal-content {
     background-color: #fff; /*#1d1d1d;*/
 }
@@ -147,7 +151,7 @@ footer {
     text-transform: uppercase;
     font-size: 13px;
     font-weight: 700;
-    color: #eee;
+    color: #cccccc;
 }
 
 .navbar-default .nav > li>a:hover,
@@ -506,6 +510,10 @@ fieldset[disabled] .btn-default.active {
 .btn-xl {
     padding: 15px 30px;
     font-size: 20px;
+}
+
+.btn.sharp {
+  border-radius:0;
 }
 
 ::-moz-selection {

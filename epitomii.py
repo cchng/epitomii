@@ -1,7 +1,8 @@
+import markdown
 import os
 import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
-     render_template, flash, make_response
+     render_template, flash, make_response, Markup
 
 
 YOUTUBE_CODE = "bo9YNgdMpkQ"
@@ -32,9 +33,22 @@ def music():
     db = get_db()
     cur = db.execute('select url from entries order by id desc')
     jams = cur.fetchall()
-    print(jams)
-#    return ",".join(jams)
     return render_template('music.html', jams=jams)
+
+@app.route('/posts')
+def posts():
+  
+#    db = get_db()
+#    cur = db.execute('select url from entries order by id desc')
+#    jams = cur.fetchall()
+    # TODO HARD CODED!!!
+    with open("_posts/behind-the-scenes.md", "r") as mdfile:
+        content = mdfile.read()
+        content = Markup(markdown.markdown(content))
+        
+    return render_template('posts.html',
+                           post_titles=["BEHIND THE SCENES"],
+                           **locals())
 
 # @app.route('/dashboard')
 # def dashboard():

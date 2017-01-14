@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	<meta charset="utf-8">
+	<title>epitomii</title>
+	<meta name="description" content="This is a personal website on music, code, and other things in life." />
+	<meta name="keyword" content="epitomii, epitome, personal, life, millennials, code, music, photography, travel, hello world, flask, heroku, bootstrap, daily jams, daily jam, jam, passion project, vancouver">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="Codeply">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css') }}" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/ionicons.min.css') }}" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}" />
+    </head>
+    <body>
+
+	<!-- NAVIGATION -->
+	<nav id="topNav" class="navbar navbar-default navbar-fixed-top" data-spy="affix">
+	    <div class="container-fluid">
+		<div class="navbar-header">
+		    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		    </button>
+		    <a class="navbar-brand page-scroll" href="{{ url_for('index') }}"><i class="ion-ios-pulse"></i>epitomii </a>
+		</div>
+
+
+		<div class="navbar-collapse collapse" id="bs-navbar">
+		    <ul class="nav navbar-nav navbar-right">
+			<li>
+			    <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme" href="{{ url_for("index") }}">Home</a>
+			</li>
+		    </ul>
+		</div>
+    	    </div>
+	</nav>    
+	    
+      {% block header %}
+      {% endblock header %}
+      {% block body %}
+      {% endblock body %}
+      
+      <footer id="footer">
+        <div class="container-fluid">
+	  <span class="pull-right text-muted small">Built
+	    with <a href="http://flask.pocoo.org/">Flask</a>. Deployed
+	    to <a href="https://www.heroku.com">Heroku</a>. Based on <a href="http://www.bootstrapzero.com">Landing Zero - a theme by BootstrapZero</a>.</span>
+        </div> 
+      </footer> 
+      
+      <!--scripts loaded here --> 
+      <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/jquery.easing.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/wow.js') }}"></script>
+      <script>
+       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-90361940-1', 'auto');
+       ga('send', 'pageview');
+
+      </script>
+      
+      {% block scripts %}
+      {% endblock scripts %}
+    </body>
+</html>

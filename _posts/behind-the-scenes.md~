@@ -1,0 +1,17 @@
+behind the scenes
+=================
+
+* * *
+
+1. background knowledge: python, html, js, css
+2. learn [Flask](http://flask.pocoo.org/docs/0.12/quickstart/)
+3. get an idea of what [jinja](http://jinja.pocoo.org/) is
+3. find and download a free [bootstrap](http://getbootstrap.com/) [template](https://www.bootstrapzero.com/bootstrap-template/landing-zero-free-bootstrap-theme)
+4. tie the flask python app and bootstrap template
+5. follow the instructions on [Heroku](https://devcenter.heroku.com/start)
+6. deploy app to the cloud
+7. register domain name on [GoDaddy](https://ca.godaddy.com/)
+8. set up [custom domain](https://devcenter.heroku.com/articles/custom-domains)
+on Heroku
+9. point custom domain to app with some help from [StackOverflow](http://stackoverflow.com/questions/14125175/setup-heroku-and-godaddy
+) and this [blogger](http://lifesforlearning.com/heroku-with-godaddy/)
