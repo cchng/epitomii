@@ -47,7 +47,7 @@ def posts():
         content = Markup(markdown.markdown(content))
         
     return render_template('posts.html',
-                           post_titles=["BEHIND THE SCENES"],
+                           post_titles=["BEHIND THE SCENES I"],
                            **locals())
 
 # @app.route('/dashboard')
