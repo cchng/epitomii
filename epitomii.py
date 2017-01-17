@@ -5,16 +5,20 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash, make_response, Markup
 
 
+
 YOUTUBE_CODE = "qmbX3odL5xg"
 DAILY_JAM = "https://www.youtube.com/embed/{code}?rel=0&amp;controls=0&amp;showinfo=0;autoplay=1&loop=1&playlist={code}".format(code=YOUTUBE_CODE)
 #DAILY_JAM = "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/264414483&amp;auto_play=true&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"
+
+POST_PATH = "_posts/behind-the-scenes.md"
+POST_TITLE = "101 / BEHIND THE SCENES"
 
 app = Flask(__name__)
 app.config.from_object(__name__)
 
 # Load default config and override config from an environment variable
 app.config.update(dict(
-    DATABASE=os.path.join(app.root_path, 'jams.db'),
+    DATABASE=os.path.join(app.root_path, 'epitomii.db'),
     SECRET_KEY='development key',
     USERNAME='admin',
     PASSWORD='default'
@@ -31,25 +35,25 @@ def index():
 def music():
   
     db = get_db()
-    cur = db.execute('select url from entries order by id desc')
+    cur = db.execute('select url from jams order by id desc')
     jams = cur.fetchall()
     return render_template('music.html', jams=jams)
 
 @app.route('/posts')
 def posts():
-  
-#    db = get_db()
-#    cur = db.execute('select url from entries order by id desc')
-#    jams = cur.fetchall()
-    # TODO HARD CODED!!!
-    with open("_posts/behind-the-scenes.md", "r") as mdfile:
-        content = mdfile.read()
-        content = Markup(markdown.markdown(content))
-        
-    return render_template('posts.html',
-                           post_titles=["BEHIND THE SCENES I"],
-                           **locals())
+    db = get_db()
+    cur = db.execute('select title, filepath from posts order by id desc')
+    posts = cur.fetchall()
+    return render_template('posts.html', posts=posts)
 
+@app.route('/show_post', methods=["POST"])
+def show_post():
+    print request
+    with open(request.data, "r") as md:
+        print request.data
+        content = md.read()
+        
+    return Markup(markdown.markdown(content))
 # @app.route('/dashboard')
 # def dashboard():
 #     return render_template('dashboard.html')
@@ -118,29 +122,30 @@ def posts():
 # #     flash('You were logged out')
 # #     return redirect(url_for('show_entries'))
 
-# # @app.route('/')
-# # def show_entries():
-# #     db = get_db()
-# #     cur = db.execute('select title, text from entries order by id desc')
-# #     entries = cur.fetchall()
-# #     return render_template('show_entries.html', entries=entries)
 
-#@app.route('/add', methods=['POST'])
-@app.cli.command('add')
-def add_entry():
+@app.cli.command('add-jam')
+def add_jam():
     db = get_db()
     if "soundcloud" in DAILY_JAM:
         entry = DAILY_JAM.replace("auto_play=true", "auto_play=false")
     else:
         entry = DAILY_JAM.split("?")[0]
         
-    db.execute('insert into entries (url) values (?)', [entry])
+    db.execute('insert into jams (url) values (?)', [entry])
     db.commit()
     print('{} was successfully posted'.format(entry))
-  
-# #     flash('New entry was successfully posted')
-# #     return redirect(url_for('show_entries'))
-@app.cli.command("rm")
+
+@app.cli.command('add-post')
+def add_post():
+    path = POST_PATH
+    title = POST_TITLE
+    db = get_db()
+    db.execute('insert into posts (title, filepath) values (?, ?)',
+               [title, path])
+    db.commit()
+    print('{} {} was successfully posted'.format(path, title))
+
+@app.cli.command("rm-jam")
 def remove_entry():
     db = get_db()
     if "soundcloud" in DAILY_JAM:
@@ -148,7 +153,7 @@ def remove_entry():
     else:
         entry = DAILY_JAM.split("?")[0]
 
-    db.execute("delete from entries where url=(?)", [entry])
+    db.execute("delete from jams where url=(?)", [entry])
     db.commit()
     print("latest entry deleted")
 
@@ -185,7 +190,6 @@ def close_db(error):
         g.sqlite_db.close()
 
 
-
-
 if __name__ == "__main__":
     app.run()
+

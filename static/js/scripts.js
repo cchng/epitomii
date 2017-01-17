@@ -32,4 +32,5 @@
 	$('#image-gallery-caption').text($(e.relatedTarget).data('caption'));
     });
 
+
 })(jQuery);
