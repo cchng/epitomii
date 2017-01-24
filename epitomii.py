@@ -208,10 +208,11 @@ def sitemap():
     # static pages
     for rule in app.url_map.iter_rules():
         if "GET" in rule.methods and len(rule.arguments)==0:
+            url = url_for(rule.endpoint, **(rule.defaults or {}))
             pages.append(
-                [rule.rule,thirty_days_ago]
+                [url, thirty_days_ago]
             )
-      
+    print(pages)
     sitemap_xml = render_template('sitemap_template.xml', pages=pages)
     response = make_response(sitemap_xml)
     response.headers["Content-Type"] = "application/xml"
