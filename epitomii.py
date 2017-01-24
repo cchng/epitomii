@@ -2,6 +2,7 @@
 import markdown
 import os
 import sqlite3
+import urlparse
 from datetime import datetime, timedelta
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash, make_response, Markup
@@ -205,13 +206,15 @@ def sitemap():
     pages = []
 
     thirty_days_ago=datetime.now() - timedelta(days=30)
+    url_root = request.url_root[:-1]
+    print url_root
     # static pages
     for rule in app.url_map.iter_rules():
         if "GET" in rule.methods and len(rule.arguments)==0:
-            url = url_for(rule.endpoint, **(rule.defaults or {}))
             pages.append(
-                [url, thirty_days_ago]
+                [urlparse.urljoin(url_root, rule.rule), thirty_days_ago]
             )
+
     print(pages)
     sitemap_xml = render_template('sitemap_template.xml', pages=pages)
     response = make_response(sitemap_xml)
