@@ -9,9 +9,9 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
 
 
 
-#YOUTUBE_CODE = "qmbX3odL5xg"
-#DAILY_JAM = "https://www.youtube.com/embed/{code}?rel=0&amp;controls=0&amp;showinfo=0;autoplay=1&loop=1&playlist={code}".format(code=YOUTUBE_CODE)
-DAILY_JAM = "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/244976490&amp;auto_play=true&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"
+YOUTUBE_CODE = "opeETnB8m8w"
+DAILY_JAM = "https://www.youtube.com/embed/{code}?rel=0&amp;controls=0&amp;showinfo=0;autoplay=1&loop=1&playlist={code}".format(code=YOUTUBE_CODE)
+#DAILY_JAM = "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/244976490&amp;auto_play=true&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"
 
 POST_PATH = "_posts/behind-the-scenes2.md"
 POST_TITLE = "102 / BEHIND THE SCENES"
@@ -32,7 +32,7 @@ app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 @app.route('/')
 def index():
   #  username = request.cookies.get('username')
-    return render_template('index.html', jam=DAILY_JAM)
+    return render_template('index.html', jam=DAILY_JAM, show_video=True)
 
 @app.route('/music')
 def music():
