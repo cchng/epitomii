@@ -260,26 +260,31 @@
                 <p>message me.</p>
             </div>
             <div class="col-lg-10 col-lg-offset-1 text-center">
-                <form class="contact-form row" action="mailto:carol.linwc@gmail.com?subject=Hey" method="post" enctype="text/plain">
+                <form class="contact-form row" id="#contactForm"
+		      action="{{ url_for('send_email') }} " method="post">
                         <div class="col-md-4">
                             <label></label>
-                            <input type="text" class="form-control" placeholder="Name">
+                            <input type="text" class="form-control"
+				   placeholder="Name" name="name">
                         </div>
                         <div class="col-md-4">
                             <label></label>
-                            <input type="text" class="form-control" placeholder="Email">
+                            <input type="text" class="form-control"
+				   placeholder="Email" name="sender">
                         </div>
                         <div class="col-md-4">
                             <label></label>
-                            <input type="text" class="form-control" placeholder="Phone">
+                            <input type="text" class="form-control"
+				   placeholder="Phone" name="phone">
                         </div>
                         <div class="col-md-12">
                             <Label></label>
-                            <textarea class="form-control" rows="9" placeholder="Your message here.."></textarea>
+                            <textarea class="form-control" rows="9"
+                            placeholder="Your message here.." name="msg"></textarea>
                         </div>
                         <div class="col-md-4 col-md-offset-4">
                             <label></label>
-                            <button type="button" data-toggle="modal" data-target="#alertModal" class="btn btn-default btn-block btn-lg">send <i class="ion-android-arrow-forward"></i></button>
+                            <button type="submit" data-toggle="modal" data-target="#sentModal" class="btn btn-default btn-block btn-lg">send <i class="ion-android-arrow-forward"></i></button>
                         </div>
                     </form>
                 </div>
@@ -327,12 +332,13 @@
         </div>
     </div>
     
-    <div id="alertModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div id="sentModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
         	<div class="modal-body">
-        	    <h2 class="text-center">hey you</h2>
-        	    <p class="text-center">so nice of you to actually navigate all the way here and hit this button! but it doesn't go anywhere yet, next time :)</p>
+        	    <h2 class="text-center" id="sentContentHeader">message sent!</h2>
+        	    <p class="text-center" id="sentContent">thanks for the message. i will read
+        	    it soon :)</p>
         	    <br/>
         	    <button class="btn btn-default btn-lg center-block" data-dismiss="modal" aria-hidden="true">OK <i class="ion-android-close"></i></button>
         	</div>

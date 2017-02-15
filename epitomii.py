@@ -1,4 +1,5 @@
 
+
 import markdown
 import os
 import sqlite3
@@ -6,7 +7,9 @@ import urlparse
 from datetime import datetime, timedelta
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash, make_response, Markup
-
+from flask_mail import Mail, Message
+#import smtplib
+#from email.mime.text import MIMEText
 
 
 YOUTUBE_CODE = "opeETnB8m8w"
@@ -24,7 +27,12 @@ app.config.update(dict(
     DATABASE=os.path.join(app.root_path, 'epitomii.db'),
     SECRET_KEY='development key',
     USERNAME='admin',
-    PASSWORD='default'
+    PASSWORD='default',
+    MAIL_SERVER='smtp.gmail.com',
+    MAIL_PORT=465,
+    MAIL_USE_SSL=True,
+    MAIL_USERNAME = os.environ.get("GMAIL_SMTP_USER"),
+    MAIL_PASSWORD = os.environ.get("GMAIL_SMTP_PASSWORD")
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
@@ -49,9 +57,8 @@ def posts():
     posts = cur.fetchall()
     return render_template('posts.html', posts=posts)
 
-@app.route('/show_post', methods=["POST"])
+@app.route('/show_post', methods=["POSTp"])
 def show_post():
-    print request
     with open(request.data, "r") as md:
         print request.data
         content = md.read()
@@ -222,6 +229,41 @@ def sitemap():
 
     return response
 
+
+@app.route('/send_email', methods=["POST"])
+def send_email():
+    data = request.data
+    print(data)
+    if request.method=="POST":
+        name = request.form["name"]
+        msg = request.form["msg"]
+        sender = request.form["sender"]
+        recipient = [app.config["MAIL_USERNAME"]]
+        phone = request.form["phone"]
+        
+        if not sender:
+            print("sender: {}".format(sender))
+            sender=app.config["MAIL_USERNAME"]
+            
+        if not name:
+            name="anon"
+            
+        subject = "[epitomii] message from {}".format(name)
+        
+        mail = Mail(app)
+        message = Message(subject,
+                          sender=sender,
+                          recipients=recipient)
+        message.body = msg + "\n\nemail: {}".format(sender)
+
+        if phone:
+            message.body += "\nphone: {}".format(phone)
+        
+        mail.send(message)
+
+    return '', 204
+
+    
 if __name__ == "__main__":
     app.run()
 

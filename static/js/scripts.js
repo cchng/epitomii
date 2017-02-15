@@ -32,5 +32,21 @@
 	$('#image-gallery-caption').text($(e.relatedTarget).data('caption'));
     });
 
+    // $('#sentModal').on('show.bs.modal', (function (e) {
+    // 	$.ajax({
+    //         url: "/send_email",
+    //         data: $(e),
+    // 	    contentType: "text/plain",
+    //         type: 'POST',
+    //         success: function(response) {
+    // 	    	console.log(response); 
+    //         },
+    //         error: function(error) {
+    //             console.log(error);
+    //         }
+    //     });
+
+    // });
+
 
 })(jQuery);
