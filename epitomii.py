@@ -8,9 +8,6 @@ from datetime import datetime, timedelta
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash, make_response, Markup
 from flask_mail import Mail, Message
-#import smtplib
-#from email.mime.text import MIMEText
-
 
 YOUTUBE_CODE = "opeETnB8m8w"
 DAILY_JAM = "https://www.youtube.com/embed/{code}?rel=0&amp;controls=0&amp;showinfo=0;autoplay=1&loop=1&playlist={code}".format(code=YOUTUBE_CODE)
