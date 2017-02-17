@@ -54,7 +54,7 @@ def posts():
     posts = cur.fetchall()
     return render_template('posts.html', posts=posts)
 
-@app.route('/show_post', methods=["POSTp"])
+@app.route('/show_post', methods=["POST"])
 def show_post():
     with open(request.data, "r") as md:
         print request.data
