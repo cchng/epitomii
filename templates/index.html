@@ -22,9 +22,10 @@
     {% else %}
     <iframe class="fillWidth fadeIn wow collapse in" data-wow-delay="0.5s" src="{{ jam }}" id="youtube-background">
     </iframe>
+    <!-- <video autoplay="" loop="" class="fillWidth fadeIn wow collapse in" data-wow-delay="0.0s" id="video-background"> -->
 
-    <video autoplay="" loop="" class="fillWidth fadeIn wow collapse in" data-wow-delay="0.5s" id="video-background">
-        <source src="{{ url_for('static', filename='assets/epitomii.mp4') }}" type="video/mp4">Your browser does not support the video tag. I suggest you upgrade your browser.
+    <video autoplay="" loop="" class="fillWidth" data-wow-delay="0.0s" id="video-background">
+        <source src="{{ url_for('static', filename='assets/drive.mp4') }}" type="video/mp4">Your browser does not support the video tag. I suggest you upgrade your browser.
     </video>
     {% endif %}
 </header>

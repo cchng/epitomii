@@ -10,8 +10,8 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
 from flask_mail import Mail, Message
 
 YOUTUBE_CODE = "shoKwAhrU4Y"
-DAILY_JAM = "https://www.youtube.com/embed/{code}?rel=0&amp;controls=0&amp;showinfo=0;autoplay=1&loop=1&playlist={code}".format(code=YOUTUBE_CODE)
-#DAILY_JAM = "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/244976490&amp;auto_play=true&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"
+#DAILY_JAM = "https://www.youtube.com/embed/{code}?rel=0&amp;controls=0&amp;showinfo=0;autoplay=1&loop=1&playlist={code}".format(code=YOUTUBE_CODE)
+DAILY_JAM = "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/319468188&amp;auto_play=true&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"
 
 POST_PATH = "_posts/ennui.md"
 POST_TITLE = "103 / ENNUI"
@@ -37,7 +37,7 @@ app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 @app.route('/')
 def index():
   #  username = request.cookies.get('username')
-    return render_template('index.html', jam=DAILY_JAM, show_video=True)
+    return render_template('index.html', jam=DAILY_JAM, show_video=False)
 
 @app.route('/music')
 def music():
